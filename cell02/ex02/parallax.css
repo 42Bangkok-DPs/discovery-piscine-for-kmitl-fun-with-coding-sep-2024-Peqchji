@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    width: 100vw;
+}
+
+article {
+    background-color: black;
+    height: 50vh;
+}
+
+.parallax {
+    height: 100vh; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    color: cornsilk;
+    background-image: url(https://m.media-amazon.com/images/I/51y8GUVKJoL.jpg);
+}
+
+footer {
+    color: cornsilk;
+    background-image: url(https://res.cloudinary.com/practicaldev/image/fetch/s--KCaf-BIx--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_800/https://dev-to-uploads.s3.amazonaws.com/uploads/articles/f2d4uhcc2m5pot3d4p24.png);
+}

@@ -1,0 +1,22 @@
+.container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+    border: 1px black solid;
+    background-color: black;
+    gap: 1px;
+    height: 100%;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+}
+
+.cell#one {
+    background-color: darkkhaki; 
+}
+
+.cell#two  {
+    background-color: darksalmon;
+}

@@ -53,8 +53,9 @@ changes in the reverse order than mentioned earlier. -->
     });
 
     function balloon() {
-        if (redBalloon.offsetWidth == 420) {
-            redBalloon.style.width = '200px';
+        console.log(redBalloon.offsetWidth)
+        if (redBalloon.offsetWidth >= 420) {
+            updateBalloon('200px', rotation[idx]);
             return;
         }
 

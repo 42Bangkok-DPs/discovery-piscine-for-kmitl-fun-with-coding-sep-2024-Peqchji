@@ -1,4 +1,6 @@
-function createTodo(value, modals, yesBtn, noBtn, store) {
+var store = getCookies('todo') || [];
+
+function createTodo(value, modals, yesBtn) {
     const list = $('#ft_list');
     const newElement = $('<div></div>')
     const modal = modals[0];
@@ -9,15 +11,7 @@ function createTodo(value, modals, yesBtn, noBtn, store) {
     newElement.on('click', () => {
         
         yesBtn.on('click', () => {
-            const temp = store.filter(val => val != element.innerHTML);
-            
-            modal.close();
-            newElement.remove();
-
-            setCookies(temp);
-        });
-
-        noBtn.on('click', () => {
+            deleteElement(list, newElement);
             modal.close();
         });
 
@@ -27,10 +21,27 @@ function createTodo(value, modals, yesBtn, noBtn, store) {
     list.append(newElement);
 }
 
+function deleteElement(list, element) {
+    store = [];
+    element.remove();
+    
+    const child = list.children();
+    for (let idx = 0; idx < child.length; idx++) {
+        store.push(child[idx].innerHTML)
+    }
+
+    setCookies('todo', store);
+
+}
+
 function getCookies(key) {
     const cookies = document.cookie.match('(^|;)\\s*' + key + '\\s*=\\s*([^;]+)');
 
     return cookies ? JSON.parse(cookies.pop()) : [];
+}
+
+function setCookies(key, val) {
+    document.cookie = `${key}=${JSON.stringify(val)}; path=/;`
 }
 
 
@@ -40,10 +51,12 @@ $(document).ready(() => {
     const noBtn = $('#no-btn');
     const modal = $('#myModal');
 
-    const store = getCookies('todo') || [];
-
     store.forEach(value => {
-        createTodo(value, modal, yesBtn, noBtn, store);
+        createTodo(value, modal, yesBtn);
+    });
+
+    noBtn.on('click', () => {
+        modal.close();
     });
     
     btn.on('click', () => {
@@ -57,10 +70,10 @@ $(document).ready(() => {
         
         store.push(value);
         
-        createTodo(value, modal, yesBtn, noBtn, store);
+        createTodo(value, modal, yesBtn);
 
         input.val('');
 
-        document.cookie = `todo=${JSON.stringify(store)}; path=/;`
+        setCookies('todo', store);
     });
 });

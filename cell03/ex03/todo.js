@@ -1,4 +1,4 @@
-function createTodo(value, modal, yesBtn, noBtn) {
+function createTodo(value, modal, yesBtn, noBtn, store) {
     const list = document.getElementById('ft_list');
     const newElement = document.createElement('div');
 
@@ -8,7 +8,7 @@ function createTodo(value, modal, yesBtn, noBtn) {
             
             yesBtn.onclick = function() {
                 modal.close();
-                deleteElement(newElement);
+                deleteElement(newElement, store);
             }
 
             noBtn.onclick = function() {
@@ -21,13 +21,22 @@ function createTodo(value, modal, yesBtn, noBtn) {
         list.appendChild(newElement);
 }
 
-function deleteElement(element) {
+function deleteElement(element, store) {
+    const temp = store.filter(val => val != element.innerHTML);
+
+    setCookies(temp);
+
     element.parentNode.removeChild(element);
 }
 
 function getCookies(key) {
-    return JSON.parse(document.cookie.match('(^|;)\\s*' + key + '\\s*=\\s*([^;]+)')?.pop())
+    const cookies = document.cookie.match('(^|;)\\s*' + key + '\\s*=\\s*([^;]+)');
 
+    return cookies ? JSON.parse(cookies.pop()) : [];
+}
+
+function setCookies(store) {
+    document.cookie = `todo=${JSON.stringify(store)}; path=/;`
 }
 
 
@@ -40,7 +49,7 @@ window.addEventListener('load', () => {
     const store = getCookies('todo') || [];
 
     store.forEach(value => {
-        createTodo(value, modal, yesBtn, noBtn);
+        createTodo(value, modal, yesBtn, noBtn, store);
     });
     
     btn.onclick = () => {
@@ -53,9 +62,9 @@ window.addEventListener('load', () => {
         
         store.push(value);
         
-        createTodo(value, modal, yesBtn, noBtn);
+        createTodo(value, modal, yesBtn, noBtn, store);
 
         input.value = "";
-        document.cookie = `todo=${JSON.stringify(store)}; path=/;`
+        setCookies(store);
     };
 })

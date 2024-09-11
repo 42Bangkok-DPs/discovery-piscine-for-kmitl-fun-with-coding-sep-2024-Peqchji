@@ -37,11 +37,12 @@ function deleteElement(list, element) {
 function getCookies(key) {
     const cookies = document.cookie.match('(^|;)\\s*' + key + '\\s*=\\s*([^;]+)');
 
-    return cookies ? JSON.parse(cookies.pop()) : [];
+    return cookies ? JSON.parse(decodeURI(cookies.pop())) : [];
 }
 
 function setCookies(key, val) {
-    document.cookie = `${key}=${JSON.stringify(val)}; path=/;`
+    const encoded = encodeURI(JSON.stringify(val))
+    document.cookie = `${key}=${encoded}; path=/;`
 }
 
 

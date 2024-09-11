@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./balloon.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="red-balloon"></div>
+</body>
+<script>
+    const rotation = ['red', 'green', 'blue'];
+    let idx = 0;
+
+    const decreaseBy = 5;
+    const increaseBy = 10;
+
+    function updateBalloon(size, color) {
+        $('#red-balloon').css({
+            width: size,
+            height: size,
+            backgroundColor: color
+        });
+    }
+
+    $('#red-balloon').on('mouseover', function() {
+        const currentSize = $(this).width();
+        if (currentSize - decreaseBy >= 200) {
+            idx -= 1;
+            if (idx < 0) idx = rotation.length - 1;
+
+            const newColor = rotation[idx];
+            const newSize = `${currentSize - decreaseBy}px`;
+
+            updateBalloon(newSize, newColor);
+        }
+    });
+
+    $('#red-balloon').on('click', function() {
+        const currentSize = $(this).width();
+        if (currentSize >= 420) {
+            updateBalloon('200px', rotation[idx]);
+            return;
+        }
+
+        idx = (idx + 1) % rotation.length;
+        const newColor = rotation[idx];
+        const newSize = `${currentSize + increaseBy}px`;
+
+        updateBalloon(newSize, newColor);
+    });
+</script>
+</html>

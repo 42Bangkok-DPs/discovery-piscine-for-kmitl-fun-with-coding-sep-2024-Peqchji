@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list">
+        <div id="ft_list"></div>
+        <div class="input">
+            <input id="todo-input" value="" type="text">
+            <button id="add-btn">New</button>
+        </div>
+    </div>
+
+    <dialog id="myModal" class="modal">
+        <p>you want to remove that TO DO. If you confirm, the TO DO must disappear permanently from the DOM</p>
+        <button id="yes-btn">yes</button>
+        <button id="no-btn">no</button>
+    </dialog>
+</body>
+<script src="./todo.js"></script>
+</html>

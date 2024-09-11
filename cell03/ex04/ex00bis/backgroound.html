@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body style="height: 100vh;">
+    <button class="btn">
+        Click me!
+    </button>
+</body>
+
+<script>
+    $(document).ready(() => {
+        $('.btn').on('click', () => {
+            const randomR = Math.round(Math.random() * 255);
+            const randomG = Math.round(Math.random() * 255);
+            const randomB = Math.round(Math.random() * 255);
+
+            $('body').css('background-color', `rgb(${randomR}, ${randomG}, ${randomB})`);
+        });
+    });
+</script>
+</html>

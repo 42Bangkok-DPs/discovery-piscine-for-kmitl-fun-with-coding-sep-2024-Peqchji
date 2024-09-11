@@ -1,4 +1,4 @@
-function createTodo(value, modals, yesBtn, noBtn) {
+function createTodo(value, modals, yesBtn, noBtn, store) {
     const list = $('#ft_list');
     const newElement = $('<div></div>')
     const modal = modals[0];
@@ -9,8 +9,12 @@ function createTodo(value, modals, yesBtn, noBtn) {
     newElement.on('click', () => {
         
         yesBtn.on('click', () => {
+            const temp = store.filter(val => val != element.innerHTML);
+            
             modal.close();
             newElement.remove();
+
+            setCookies(temp);
         });
 
         noBtn.on('click', () => {
@@ -39,7 +43,7 @@ $(document).ready(() => {
     const store = getCookies('todo') || [];
 
     store.forEach(value => {
-        createTodo(value, modal, yesBtn, noBtn);
+        createTodo(value, modal, yesBtn, noBtn, store);
     });
     
     btn.on('click', () => {
@@ -53,7 +57,7 @@ $(document).ready(() => {
         
         store.push(value);
         
-        createTodo(value, modal, yesBtn, noBtn);
+        createTodo(value, modal, yesBtn, noBtn, store);
 
         input.val('');
 

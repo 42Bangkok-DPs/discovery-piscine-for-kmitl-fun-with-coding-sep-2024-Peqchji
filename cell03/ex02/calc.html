@@ -1,0 +1,92 @@
+<!-- • A text input field that represents the left member of our calculation.
+• A select field that will contain a list of the following operators as options:(’+’,
+’-’, ’*’, ’/’, ’%’).
+• A text input field that represents the right member of our calculation.
+• A submit input of value ’Try me!’.
+
+When we click on the button ’Try me!’, the calculation is executed and the result
+appears in an alert message. The result also needs to be displayed on the console of your
+browzer (log).
+
+Both inputs fields can only contain positive integer values(>= 0) for the calculation to
+be executed. Otherwise display an alert message must appear with the following message
+’Error :(’.
+Division and modulo by zero display an alert message with the following message:
+"It’s over 9000!". The result also needs to be displayed on the console of your browzer
+(log)
+Every 30 seconds, an alert pop-up windows will appear saying ’Please, use me...’. -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="calculator">
+        <input id="first" type="number" value="0" min="0">
+        <select id="ops">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input id="seconds" type="number" value="0" min="0">
+
+        <button onclick="calculator()">Try me!</button>
+    </div>
+    
+</body>
+<script>
+    loopAlert();
+
+    function loopAlert() {
+        setTimeout(() => { 
+            alert('Please, use me...');
+            loopAlert();
+        }, 30 * 1000);
+    }
+
+    function calculator() {
+        const left = Number(document.getElementById('first')?.value);
+        const right = Number(document.getElementById('seconds')?.value);
+        const operator = document.getElementById('ops').value;
+
+        if (!Number.isInteger(left) || !Number.isInteger(right)) {
+            spLogger('Error :(');
+            return;
+        }
+
+        if (right == 0 && operator == '/' || operator == '%') {
+            spLogger('It’s over 9000!');
+            return;
+        }
+
+        spLogger(
+            calculation(left, right, operator)
+        );
+    }
+
+    function calculation(num1, num2, ops) {
+        const cal = {
+            "+": num1 + num2,
+            "-": num1 - num2,
+            "*": num1*num2,
+            "/": num1/num2,
+            "%": num1%num2
+        };
+
+        return cal[ops];
+    }
+
+    function spLogger(message) {
+        console.log(message)
+        alert(message)
+    }
+</script>
+</html>

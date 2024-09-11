@@ -1,0 +1,71 @@
+<!-- Create in HTML/CSS a div 200px by 200px with a red background color. The borders will be rounded to create a perfect round shape and not a square anymore. That
+div will then be our balloon.
+
+When a click occurs on the balloon, its size will grow by 10px while keeping its round
+shape. With each click its color will go in that order from red to green, then blue and
+back to red again.
+
+Usually, this type of balloon is rather resistant but if its size becomes greater than
+420px it will explode and return to its original size.
+Small additional detail, when the mouse is in the balloon and leaves it, the size of the
+balloon shrinks by 5px (the size of the balloon cannot go lower than 200px) and its color
+changes in the reverse order than mentioned earlier. -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./balloon.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="red-balloon" onclick="balloon()"></div>
+</body>
+<script>
+    const redBalloon = document.getElementById("red-balloon");
+    const rotation = [ 'red', 'green', 'blue' ];
+    let idx = 0;
+
+    const decreaseBy = 5;
+    const increaseBy = 10;
+
+    function updateBalloon(size, color) {
+        redBalloon.style.width = size;
+        redBalloon.style.height = size;
+        redBalloon.style.backgroundColor = color;
+    }
+
+
+    redBalloon.addEventListener('mouseover', () => {
+        if (redBalloon.offsetWidth - decreaseBy >= 200) {
+            idx -= 1;
+            if (idx < 0) idx = rotation.length - 1;
+
+            newColor = rotation[idx];
+
+            newOffSetSize = redBalloon.offsetWidth - decreaseBy;
+            newSize = `${newOffSetSize}px`;
+
+            updateBalloon(newSize, newColor);
+        }
+    });
+
+    function balloon() {
+        if (redBalloon.offsetWidth == 420) {
+            redBalloon.style.width = '200px';
+            return;
+        }
+
+        idx = (idx + 1)%rotation.length;
+        newColor = rotation[idx];
+
+        newOffSetSize = redBalloon.offsetWidth + increaseBy;
+        newSize = `${newOffSetSize}px`;
+
+        updateBalloon(newSize, newColor);
+    }
+
+</script>
+</html>

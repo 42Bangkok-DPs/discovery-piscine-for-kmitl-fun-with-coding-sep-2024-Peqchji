@@ -1,0 +1,50 @@
+<!-- The to do list will be represented by a div that will have as id attribute the value
+’ft_list’. This bloc contains the list of "TO DO". 
+
+Each TO DO is represented by a divcontained in the ’ft_list’ bloc. 
+
+When a TO DO is created, it is placed at the top of the list. 
+
+Up to you to create the element and place it in the right spot (DOM manipulation).
+
+There must be creation button named ’New’. When clicked, it’ll open a text window
+(checkout the prompt function) that will allow the user to fill in a new TO DO.
+
+Once validated if not empty it must appear at the top of the list.
+
+To remove a TO DO from the list, all you have to do is click on it.
+
+A configuration window must open and ask whether yes or no you want to remove that TO DO. 
+If you confirm, the TO DO must disappear permanently from the DOM, it can’t just be hidden.
+
+Small additional implementation, your TO DO list will have to be saved as a cookie.
+
+If the list contains some TO DO when you close you browser, this same list must be
+loaded and displayed in ’ft_list’. 
+
+If the cookie(s) do not exist, then the list will be blank. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="list">
+        <div id="ft_list"></div>
+        <div class="input">
+            <input id="todo-input" value="" type="text">
+            <button id="add-btn">New</button>
+        </div>
+    </div>
+
+    <dialog id="myModal" class="modal">
+        <p>you want to remove that TO DO. If you confirm, the TO DO must disappear permanently from the DOM</p>
+        <button id="yes-btn">yes</button>
+        <button id="no-btn">no</button>
+    </dialog>
+</body>
+<script src="./todo.js"></script>
+</html>

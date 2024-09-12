@@ -6,7 +6,10 @@ function createTodo(value, modals, yesBtn, noBtn) {
     const modal = modals[0];
     
     newElement.text(value)
-    newElement.css('backgroundColor', 'red');
+    newElement.css({
+        ['backgroundColor']: 'red',
+        ["white-space"]: 'pre' 
+    });
 
     newElement.on('click', () => {
         
@@ -63,14 +66,16 @@ $(document).ready(() => {
     btn.on('click', () => {
         const input = $('#todo-input');
         const value = String(input.val());   
-
-        if (!value.length) {
+        
+        if (!value.length || value.trim() === '') {
             alert("Pls enter something before add new TODO");
+            input.val('');
             return;
         }
         
         store.push(value);
         
+        console.log(value, store)
         createTodo(value, modal, yesBtn, noBtn);
 
         input.val('');

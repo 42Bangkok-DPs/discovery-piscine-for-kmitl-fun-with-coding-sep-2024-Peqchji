@@ -9,7 +9,7 @@
 <body>
 
     <div class="calculator">
-        <input id="first" type="number" value="0" min="0">
+        <input id="first" type="number" min="0">
         <select id="ops">
             <option value="+">+</option>
             <option value="-">-</option>
@@ -17,7 +17,7 @@
             <option value="/">/</option>
             <option value="%">%</option>
         </select>
-        <input id="seconds" type="number" value="0" min="0">
+        <input id="seconds" type="number" min="0">
 
         <button id="try-me">Try me!</button>
     </div>
@@ -32,22 +32,26 @@
     }
 
     function calculator() {
-        const left = Number($('#first')?.val());
-        const right = Number($('#seconds')?.val());
+        const [ left, right ] = [ $('#first')?.val(), $('#seconds')?.val() ];
+        const [ num1, num2 ] = [ Number(left), Number(right) ];
         const operator = $('#ops').val();
 
-        if (!Number.isInteger(left) || !Number.isInteger(right)) {
+        const isValid = Boolean(left) && Boolean(right);
+        const isFloat = left.includes('.') || right.includes('.');
+        const isNeg = !(num1 >= 0 && num2 >= 0);
+
+        if (!isValid || isFloat || isNeg) {
             spLogger('Error :(');
             return;
         }
 
-        if (right == 0 && operator == '/' || right == 0 && operator == '%') {
+        if (num2 == 0 && operator == '/' || num2 == 0 && operator == '%') {
             spLogger('It’s over 9000!');
             return;
         }
 
         spLogger(
-            calculation(left, right, operator)
+            calculation(num1, num2, operator)
         );
     }
 

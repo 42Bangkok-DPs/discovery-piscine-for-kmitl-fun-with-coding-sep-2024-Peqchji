@@ -7,20 +7,20 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body style="height: 100vh;">
-    <button class="btn">
+    <button id="btn">
         Click me!
     </button>
 </body>
 
 <script>
-    $(document).ready(() => {
-        $('.btn').on('click', () => {
-            const randomR = Math.round(Math.random() * 255);
-            const randomG = Math.round(Math.random() * 255);
-            const randomB = Math.round(Math.random() * 255);
+    $('#btn').on('click', () => {
+        const temp = Math.random()*255;
+        console.log(Math.round(temp), temp)
+        const randomR = Math.round(Math.random() * 255);
+        const randomB = Math.round(Math.random() * 255);
+        const randomG = Math.round(Math.random() * 255);
 
-            $('body').css('background-color', `rgb(${randomR}, ${randomG}, ${randomB})`);
-        });
-    });
+        $('body').css('background-color', `rgb(${randomR}, ${randomG}, ${randomB})`);
+    })
 </script>
 </html>

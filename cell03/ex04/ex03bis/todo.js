@@ -1,6 +1,6 @@
 var store = getCookies('todo') || [];
 
-function createTodo(value, modals, yesBtn) {
+function createTodo(value, modals, yesBtn, noBtn) {
     const list = $('#ft_list');
     const newElement = $('<div></div>')
     const modal = modals[0];
@@ -12,6 +12,10 @@ function createTodo(value, modals, yesBtn) {
         
         yesBtn.on('click', () => {
             deleteElement(list, newElement);
+            modal.close();
+        });
+
+        noBtn.on('click', () => {
             modal.close();
         });
 
@@ -53,11 +57,7 @@ $(document).ready(() => {
     const modal = $('#myModal');
 
     store.forEach(value => {
-        createTodo(value, modal, yesBtn);
-    });
-
-    noBtn.on('click', () => {
-        modal.close();
+        createTodo(value, modal, yesBtn, noBtn);
     });
     
     btn.on('click', () => {
@@ -71,7 +71,7 @@ $(document).ready(() => {
         
         store.push(value);
         
-        createTodo(value, modal, yesBtn);
+        createTodo(value, modal, yesBtn, noBtn);
 
         input.val('');
 

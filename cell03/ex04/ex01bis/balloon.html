@@ -40,7 +40,7 @@
 
     $('#red-balloon').on('click', function() {
         const currentSize = $(this).width();
-        if (currentSize >= 420) {
+        if (currentSize + increaseBy > 420) {
             updateBalloon('200px', rotation[idx]);
             return;
         }

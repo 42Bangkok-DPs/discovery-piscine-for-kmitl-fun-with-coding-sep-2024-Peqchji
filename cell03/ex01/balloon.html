@@ -54,7 +54,7 @@ changes in the reverse order than mentioned earlier. -->
 
     function balloon() {
         console.log(redBalloon.offsetWidth)
-        if (redBalloon.offsetWidth >= 420) {
+        if (redBalloon.offsetWidth + increaseBy > 420) {
             updateBalloon('200px', rotation[idx]);
             return;
         }

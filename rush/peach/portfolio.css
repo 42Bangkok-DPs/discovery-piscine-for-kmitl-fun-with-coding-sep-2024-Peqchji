@@ -1,0 +1,163 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100vw;
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+
+    background-color: whitesmoke;
+}
+
+.navigation {
+    position: fixed;
+    top: 0;
+    z-index: 50;
+    background-color: rgba(222, 222, 222, 0.40);
+    backdrop-filter: blur(8px);
+    width: 100%;
+}
+
+.nav-container {
+    height: 4rem;
+    max-width: 88rem;
+    display: flex;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    flex-direction: column;
+    justify-content: center;
+
+    padding: 1rem;
+    padding-right: 2rem;
+    padding-left: 2rem;
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-title-container {
+    align-items: center;
+    flex: none;
+    display: flex;
+}
+
+.nav-title {
+    color: rgb(255 255 255);
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.nav-link-flex {
+    display: flex;
+    margin-right: 0;
+    margin-left: 2rem;
+}
+
+.nav-link-container {
+    position: relative;
+}
+
+.nav-link {
+    display: inline-flex;
+    text-decoration: inherit;
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding-top: 0.25rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    align-items: center;
+
+    border-radius: 2rem;
+}
+
+.nav-button-container {
+    gap: 2rem;
+    flex-shrink: 1;
+    justify-content: flex-end;
+    align-items: center;
+    flex-basis: auto;
+    width: 100%;
+    display: flex;
+    position: relative;
+}
+
+.nav-button {
+    opacity: 0.7;
+    min-width: fit-content;
+    background-color: transparent;
+    background-image: none;
+    cursor: pointer;
+    text-transform: none;
+}
+
+main {
+   display: flex;
+   flex-direction: column;
+   padding-top: 5rem;
+   width: 100vw;
+}
+
+.profile {
+    margin-block: 3rem;
+
+    figure {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        margin: 0;
+
+        img {
+            width: 30%;
+            border-radius: 50%;
+            align-self: center;
+        }
+
+        figcaption {
+            width: 60%;
+            margin-top: 1rem;
+            margin: auto;
+        }
+    }
+}
+
+.experience {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.contract {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.social-container {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 2rem;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem
+    }
+}
+
+.icon > img {
+    width: 1.5rem;
+    height: 1.5rem;
+}

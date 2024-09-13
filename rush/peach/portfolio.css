@@ -127,3 +127,37 @@ main {
         }
     }
 }
+
+.experience {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.contract {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.social-container {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    gap: 2rem;
+
+    li {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem
+    }
+}
+
+.icon > img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
